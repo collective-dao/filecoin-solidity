@@ -41,6 +41,7 @@ library MinerTypes {
     uint constant GetPeerIDMethodNum = 2812875329;
     uint constant GetMultiaddrsMethodNum = 1332909407;
     uint constant WithdrawBalanceMethodNum = 2280458852;
+    uint constant ProveCommitSectorMethodNum = 2626788841;
 
     struct GetOwnerReturn {
         bytes owner;
@@ -105,4 +106,10 @@ library MinerTypes {
     struct WithdrawBalanceReturn {
         bytes amount_withdrawn;
     }
+
+    struct ProveCommitSectorParams {
+        uint64 sector_number;
+        bytes proof;
+    }
+
 }

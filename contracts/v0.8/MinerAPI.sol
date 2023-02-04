@@ -426,4 +426,18 @@ library MinerAPI {
 
         return result.deserializeWithdrawBalanceReturn();
     }
+
+    /// @notice TODO fill me up
+    /// @param target The miner actor id you want to interact with
+    /// @param params Sector number and Proof for ProveCommitSector operation
+    function proveCommitSector(
+        bytes memory target,
+        MinerTypes.ProveCommitSectorParams memory params
+    ) internal {
+        bytes memory raw_request = params.serializeProveCommitSectorParams();
+        bytes memory raw_response = Actor.call(MinerTypes.ProveCommitSectorMethodNum, target, raw_request, Misc.CBOR_CODEC, msg.value, false);
+
+        Actor.readRespData(raw_response);
+    }
+
 }

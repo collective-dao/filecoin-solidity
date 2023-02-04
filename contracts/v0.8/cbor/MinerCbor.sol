@@ -257,4 +257,16 @@ library MinerCBOR {
         (ret.amount_withdrawn, byteIdx) = rawResp.readBytes(byteIdx);
         return ret;
     }
+
+    function serializeProveCommitSectorParams(MinerTypes.ProveCommitSectorParams memory params) internal pure returns (bytes memory) {
+        // FIXME what should the max length be on the buffer?
+        CBOR.CBORBuffer memory buf = CBOR.create(64);
+
+        buf.startFixedArray(2);
+        buf.writeUInt64(params.sector_number);
+        buf.writeBytes(params.proof);
+
+        return buf.data();
+    }
+
 }
